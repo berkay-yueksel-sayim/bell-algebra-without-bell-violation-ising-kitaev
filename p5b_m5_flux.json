@@ -1,0 +1,182 @@
+{
+  "milestone": "m5_flux (Option 2) \u2014 continuous-flux Berry-phase bridge",
+  "verdict": "PARTIAL",
+  "deposit_status": "OK (conflict RESOLVED 2026-07-08 per independent countercheck; citable = gauge-invariant values only)",
+  "conflict_resolution": {
+    "status": "RESOLVED",
+    "date": "2026-07-08",
+    "note": "RESOLVED (2026-07-08, independent countercheck, 2 routes): gauge-invariant numbers confirmed (W~identity, ||[W,Z_A]||_F=0.0132); sealed 25.6. c1/c2 diagnosis revised as basis artifact of the unseeded ARPACK pipeline; single-mode delta==pi (mod 2pi: 3.1212) = diabatic crossing artifact, no method conflict with near-trivial W (eigenphases max 6.2e-03). Verdict stays PARTIAL (c3 FAIL). Ref: internal audit record, 2026-07-08 (+ addendum).",
+    "resolution_ref": "internal audit record, 2026-07-08 (+ addendum)",
+    "sealed_2026_06_25": {
+      "c1": "FAIL (grid-err large)",
+      "c2": "FAIL (||[W,Z_A]||~0.9)",
+      "c3": "FAIL (delta!=pi)",
+      "status": "c1/c2-Teil REVIDIERT (Basis-Artefakt); c3 steht"
+    },
+    "recomputed_gauge_invariant": {
+      "c1_pass": true,
+      "c2_pass": true,
+      "comm_norm_W_ZA_fro": 0.013161418501904568,
+      "W_eigenphase_max": 0.0061716846662323915,
+      "delta_full_mod_2pi": 3.121242286288016
+    }
+  },
+  "criteria": {
+    "c1_geometric": {
+      "pass": true,
+      "eigenphase_grid_err_64_128": 4.679671761455978e-05,
+      "old_permode_grid_err": 5.543606481772656e-05,
+      "min_step_overlap_M64": 0.9997410127499534
+    },
+    "c2_Ppsi_diagonal": {
+      "pass": true,
+      "comm_norm_W_ZA_fro": 0.013161418501904568,
+      "threshold": 0.1,
+      "old_selectivity_deprecated": 0.9696537549722278,
+      "note": "gauge-invariant lock; old per-mode selectivity is basis-dependent (see multi_seed)"
+    },
+    "c3_continuous_endpoints": {
+      "pass": false,
+      "delta_0": 0.0,
+      "delta_half_flux": -15.781791015648736,
+      "delta_full_flux": -28.294684249609915,
+      "delta_full_flux_mod_2pi": 3.121242286288016,
+      "target_full_flux": 3.141592653589793,
+      "max_step_jump": 3.1406126040609035
+    },
+    "c4_computed_not_fitted": {
+      "pass": true,
+      "note": "Berry/Wilson integral over Phi, never fitted to 2sqrt2 cos^2"
+    },
+    "c5_honest_U1_extension": {
+      "pass": true,
+      "note": "complex Peierls hopping leaves the exactly-solvable Z2 model; labeled, not claimed native"
+    }
+  },
+  "gauge_invariant": {
+    "W_eigenphases_M64": [
+      -0.004466867672290951,
+      -0.0031280230195968243,
+      0.00019898522422008151,
+      0.0061716846662323915
+    ],
+    "W_eigenphases_M128": [
+      -0.00451366438990551,
+      -0.0031347432198622605,
+      0.00019987545312157517,
+      0.006192410011414343
+    ],
+    "W_unitarity_dev_M64": 8.992806499463768e-15,
+    "comm_norm_W_ZA_fro": 0.013161418501904568,
+    "ZA_localization_eigs": [
+      0.6080025084572482,
+      0.49110163796777706,
+      0.0004062530671576782,
+      0.00017781763569966146
+    ],
+    "construction": "W = product of SVD-unitarized overlap matrices over Phi:0->2pi, closed on the Phi=0 start basis; Z_A = 1 - 2*P_enc from top-2 eigenvectors of the enclosed-localization operator (basis-covariant)"
+  },
+  "multi_seed": {
+    "seeds": [
+      2026,
+      7,
+      424242
+    ],
+    "determinism_same_seed_max_dW": 0.0,
+    "determinism_same_seed_d_selectivity": 0.0,
+    "W_eigenphases_per_seed": {
+      "2026": [
+        -0.004466867672290951,
+        -0.0031280230195968243,
+        0.00019898522422008151,
+        0.0061716846662323915
+      ],
+      "7": [
+        -0.004466867672291376,
+        -0.0031280230195970373,
+        0.00019898522422208198,
+        0.006171684666232997
+      ],
+      "424242": [
+        -0.0044668676722925274,
+        -0.0031280230195951655,
+        0.00019898522422107822,
+        0.006171684666232129
+      ]
+    },
+    "eigenphase_spread_across_seeds": 2.0004614284530042e-15,
+    "comm_norm_per_seed": [
+      0.013161418501904568,
+      0.013161418501903877,
+      0.013161418501901414
+    ],
+    "comm_norm_mean": 0.013161418501903286,
+    "comm_norm_std": 1.3536190786580043e-15,
+    "old_selectivity_per_seed": [
+      0.9696537549722278,
+      0.9696537549729056,
+      0.9696537549724997
+    ],
+    "old_selectivity_mean": 0.9696537549725445,
+    "old_selectivity_std": 2.785039102618009e-13,
+    "m3_reference_unseeded_runs": [
+      0.503,
+      0.614,
+      0.183,
+      3.275
+    ]
+  },
+  "system": {
+    "lattice": [
+      24,
+      18
+    ],
+    "kappa": 0.25,
+    "NZ": 4,
+    "bulk_gap": 0.8008076870954777,
+    "near_zero_abs_eps": [
+      0.0038801607058125374,
+      0.0038801607058125452,
+      0.004905255557592695,
+      0.004905255557592696
+    ],
+    "enclosed_pair": [
+      [
+        6,
+        12
+      ],
+      [
+        18,
+        12
+      ]
+    ],
+    "reference_pair": [
+      [
+        6,
+        4
+      ],
+      [
+        18,
+        4
+      ]
+    ]
+  },
+  "physics_statement": "honest PARTIAL: the gauge-invariant flux holonomy is NEAR-TRIVIAL (W~identity, ||[W,Z_A]||_F=0.013 -> NO channel mixing; the sealed 25.6. 'non-abelian mixing' diagnosis was a basis artifact, revised per independent countercheck 2026-07-08). THE obstruction is criterion 3: the accumulated Berry phase misses delta=pi at one flux quantum (the single-mode 'pi' is a diabatic branch exchange at true crossings, not a robust adiabatic result). Continuous-delta stays EFFECTIVE; Z2-native endpoints delta=0,pi and the fusion-qubit algebra remain rigorous. Citable: gauge-invariant values only; legacy selectivity deprecated.",
+  "provenance": {
+    "date": "2026-07-07 (fix) / 2026-07-08 (conflict resolved)",
+    "script": "original construction script m5_flux.py (reproduced for this deposit by this file)",
+    "seed_default": 2026,
+    "seeds_demo": [
+      2026,
+      7,
+      424242
+    ],
+    "fix": "review issue 3: deterministic ARPACK v0 + gauge-invariant W/Z_A locks; 2026-07-08: physics_statement/DIAGNOSIS revised + conflict RESOLVED per independent audit",
+    "grids": {
+      "main_M": 64,
+      "control_M": 128,
+      "delta_curve_M": 160
+    }
+  },
+  "runtime_s": 18.7
+}

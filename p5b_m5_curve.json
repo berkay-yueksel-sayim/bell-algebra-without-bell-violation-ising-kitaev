@@ -1,0 +1,101 @@
+{
+  "milestone": "M5 — loop-threading sector-phase corollary S(delta) = 2*sqrt(2)*cos^2(delta/2)",
+  "verdict": "PARTIAL-GO (rigorous corollary of M0 + lattice algebra; continuous-flux bridge scoped as effective, see p5b_m5_flux.json)",
+  "primary_lattice_result": {
+    "script": "p5b_cbell_m5_lattice_sweep.py (= the original construction's m5_numeric.py, Stage B, run on the real Kitaev-honeycomb lattice; depends on p5b_m3b_kitaev_realspace.py, both deposited alongside)",
+    "lattice_size": [
+      28,
+      16
+    ],
+    "n_vortices": 8,
+    "gram_error": 2.2e-14,
+    "locked_points": [
+      {
+        "delta_label": "0",
+        "delta_rad": 0.0,
+        "S_lattice": 2.828427,
+        "S_target": 2.828427,
+        "residual": 0.0
+      },
+      {
+        "delta_label": "pi/6",
+        "delta_rad": 0.5235987755982988,
+        "S_lattice": 2.638958,
+        "S_target": 2.638958,
+        "residual": 0.0
+      },
+      {
+        "delta_label": "pi/4",
+        "delta_rad": 0.7853981633974483,
+        "S_lattice": 2.414214,
+        "S_target": 2.414214,
+        "residual": 4.4e-16
+      },
+      {
+        "delta_label": "pi/3",
+        "delta_rad": 1.0471975511965976,
+        "S_lattice": 2.12132,
+        "S_target": 2.12132,
+        "residual": 4.4e-16
+      },
+      {
+        "delta_label": "pi/2",
+        "delta_rad": 1.5707963267948966,
+        "S_lattice": 1.414214,
+        "S_target": 1.414214,
+        "residual": 2.2e-16
+      },
+      {
+        "delta_label": "2pi/3",
+        "delta_rad": 2.0943951023931953,
+        "S_lattice": 0.707107,
+        "S_target": 0.707107,
+        "residual": 1.1e-16
+      },
+      {
+        "delta_label": "3pi/4",
+        "delta_rad": 2.356194490192345,
+        "S_lattice": 0.414214,
+        "S_target": 0.414214,
+        "residual": 1.1e-16
+      },
+      {
+        "delta_label": "pi",
+        "delta_rad": 3.141592653589793,
+        "S_lattice": 0.0,
+        "S_target": 0.0,
+        "residual": 1.1e-32
+      }
+    ],
+    "max_residual_over_8_points": 4.44e-16,
+    "note_cited_in_paper_text": "this is the value reported in the paper as the measured residual (Sec. 'Loop-threading sector phase')"
+  },
+  "bridge_facts": {
+    "threading_generator": "P_psi = (I - Z_A)/2, enclosed fusion-channel parity",
+    "Z_A_locality": "built from Alice's 2 spatially localized vortex-core Majorana modes, min left-support 0.957",
+    "delta_0_endpoint_S": 2.828427,
+    "delta_pi_endpoint_S": 0.0,
+    "delta_pi_is_parity_flip_unitary_involution": true,
+    "dynamical_shortcut_ruled_out": {
+      "M_12_ZA_coupling": 1.491e-18,
+      "max_other_Mab_coupling": 0.04859,
+      "note": "residual lattice coupling is NOT pure Z_A, so a dynamical (non-topological) phase would mix fusion channels; clean exp(i*delta*P_psi) needs topological loop-threading"
+    }
+  },
+  "delta_star_nonlocality_threshold": {
+    "value_rad": 1.143718,
+    "value_deg": 65.53,
+    "formula": "2*arccos(2^(-1/4))",
+    "check_S_at_delta_star": 2.0
+  },
+  "abstract_crosscheck": {
+    "script": "p5b_cbell_m5_abstract_crosscheck.py (= independent fixed-setting verification, self-contained, no lattice dependency)",
+    "purpose": "independent second route: fixed (delta=0-optimal) Alice settings on an abstract 2-qubit Bell state, evaluated as an axis-misalignment scan",
+    "max_residual_over_8_points": 8.88e-16,
+    "note": "this is the abstract cross-check's OWN residual (a different, self-contained construction) — it is NOT the value cited in the paper text as the measured lattice residual (4.4e-16, see primary_lattice_result above); listed here only as an independent order-of-magnitude confirmation that the curve is reproduced by a second, unrelated construction"
+  },
+  "monotonicity": {
+    "monotone_decreasing_0_to_pi": true,
+    "max_over_0_to_pi": 2.828427
+  }
+}

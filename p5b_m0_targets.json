@@ -1,0 +1,71 @@
+{
+  "milestone": "M0-NUMERIC — four locked Bell-algebra targets on the Kitaev-honeycomb fusion qubit",
+  "verdict": "GO",
+  "provenance": {
+    "script": "p5b_cbell_m0_reproduction.py",
+    "note": "independent reproduction: mirrored Jordan-Wigner ordering (opposite of the original construction), NOT importing any files from the original construction; own numpy from scratch",
+    "date": "2026-06-25 (original independent reproduction); re-run 2026-07-13 for this deposit, identical to machine precision"
+  },
+  "targets": {
+    "P1_ZA_XA_commutator_norm": 2.0,
+    "P1_ideal": 2,
+    "P2_cross_party_commutator_norm": 0.0,
+    "P2_ideal": 0,
+    "S_CHSH_ideal_bell_state": 2.828427,
+    "S_ideal": 2.8284271247461903,
+    "K_commuting_only_control": 1.414214,
+    "K_bound": 2
+  },
+  "adversarial_checks": {
+    "chsh_operator_norm": 2.828427,
+    "chsh_operator_note": "Tsirelson cap; S can never exceed this on any state",
+    "no_third_majorana_max_S": 1.414214,
+    "no_third_majorana_note": "falsifiability control: without the 3rd Majorana the 2nd setting commutes with Z_A, so max|S| stays <=2 (1D-trap collapse)",
+    "XA_is_static_observable_not_braid": true,
+    "bell_state_schmidt": [
+      0.7071067811865476,
+      0.7071067811865476,
+      0.0,
+      0.0
+    ],
+    "entanglement_entropy_bits": 1.0
+  },
+  "superselection": {
+    "Ptot_expectation": 1.0,
+    "psi_is_Ptot_eigenstate": true,
+    "sector_weight_plus1": 1.0,
+    "S_in_plus1_sector": 2.828427,
+    "note": "no SSR reduction: Bell state has unit weight in its own parity sector, so the physical parity projection acts as identity on it"
+  },
+  "algebra_representation_independence": {
+    "method": "combinatorial set-overlap rule (-1)^(|S||T|-|S intersect T|) checked against explicit matrix representation",
+    "all_sampled_pairs_agree": true
+  },
+  "lattice_realization": {
+    "source": "original construction scripts m0_numeric.py and m3b_kitaev_realspace.py (reproduced for this deposit as p5b_cbell_m5_lattice_sweep.py dependency p5b_m3b_kitaev_realspace.py)",
+    "lattice_size": [
+      28,
+      16
+    ],
+    "n_vortices": 8,
+    "gram_error": 2.2e-14,
+    "alice_mode_left_weight_pct": 91.7,
+    "footprint_leak_point_value_pct": 8.3,
+    "split_over_gap_pct": 7.3,
+    "finite_size_leak_series_pct": [
+      17.01,
+      10.176,
+      2.301
+    ],
+    "finite_size_lattice_L1_series": [
+      24,
+      32,
+      44
+    ],
+    "bulk_gap_range": [
+      0.75,
+      0.8
+    ],
+    "note": "leak series confirms P2 -> 0 exactly as L -> infinity; not a from-scratch re-derivation of the Kitaev honeycomb solution, but an independently cross-checked instantiation of the M0 algebra on it"
+  }
+}
