@@ -35,8 +35,16 @@ REPRODUCIBILITY (fixed 2026-07-07, review issue 3):
      (multi-seed demo, criterion (c)) — it is NOT a lock quantity anymore.
 Imports verified m3b primitives.
 """
+# Console guard: printed output contains non-ASCII (U+2014). That character is cp1252-encodable,
+# so this is precaution against a future edit, not a fix for an observed failure.
+import sys
+
+if __name__ == "__main__" and hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+
 import json
 import time
+from pathlib import Path
 import numpy as np
 import scipy.sparse as sp
 import scipy.sparse.linalg as spla
@@ -395,6 +403,12 @@ result = {
                     "grids": {"main_M": 64, "control_M": 128, "delta_curve_M": 160}},
     "runtime_s": round(time.time() - T_START, 1),
 }
-with open("p5b_m5_flux.json", "w", encoding="utf-8") as fh:
-    json.dump(result, fh, indent=2)
-print(f"\n[json] wrote p5b_m5_flux.json (verdict {result['verdict']}, runtime {result['runtime_s']}s)")
+if __name__ == "__main__":
+    # Write the deposited JSON only when this file is RUN, never on import:
+    # an import would otherwise overwrite p5b_m5_flux.json in the record.
+    # Anchor the write path to this file's own directory, so running the script from any
+    # working directory still writes next to the deposit rather than into the caller's cwd.
+    out_path = Path(__file__).resolve().parent / "p5b_m5_flux.json"
+    with open(out_path, "w", encoding="utf-8") as fh:
+        json.dump(result, fh, indent=2)
+    print(f"\n[json] wrote p5b_m5_flux.json (verdict {result['verdict']}, runtime {result['runtime_s']}s)")

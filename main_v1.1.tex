@@ -1,0 +1,761 @@
+\documentclass[aps,pra,twocolumn,superscriptaddress,floatfix,nofootinbib]{revtex4-2}
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{bm}
+\usepackage{mathtools}
+
+\providecommand{\ket}[1]{\lvert #1 \rangle}
+\providecommand{\bra}[1]{\langle #1 \rvert}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!60!black,
+  citecolor=blue!60!black,
+  urlcolor=blue!60!black,
+  pdfauthor={Berkay Y{\"u}ksel Sayim},
+  pdftitle={Bell Algebra without Bell Violation: CHSH Operators for Ising Anyons in the Kitaev Honeycomb Model},
+  pdfsubject={quant-ph},
+  pdfkeywords={Kitaev honeycomb model, Ising anyons, Majorana zero modes,
+               CHSH inequality, Bell algebra, superselection, magic,
+               nonstabilizerness, topological quantum computation}
+}
+
+\begin{document}
+
+\setcounter{secnumdepth}{3}
+
+\title{Bell Algebra without Bell Violation: CHSH Operators for Ising Anyons in the Kitaev Honeycomb Model}
+
+\author{Berkay Y\"uksel Sayim}
+\email{berksa@tutamail.com}
+\affiliation{Independent Research, Germany}
+\affiliation{\href{https://orcid.org/0009-0004-4993-7352}{ORCID:
+0009-0004-4993-7352}}
+
+\date{2026-09-10}
+
+\begin{abstract}
+We construct four spatially separated Majorana zero modes (MZMs) per
+party on a finite Kitaev honeycomb lattice in its non-Abelian phase,
+bound to well-separated Ising vortices, and use them to realize a
+local, noncommuting CHSH measurement algebra. Two static fusion-parity
+observables per party, $Z_A=i\gamma_{A,1}\gamma_{A,2}$ and
+$X_A=i\gamma_{A,2}\gamma_{A,3}$ (and analogously for Bob), commute
+exactly between parties ($P_2=0$) and fail to commute within a party
+($P_1=\lVert[Z_A,X_A]\rVert_2=2.000000$); on the maximally entangled
+fusion-parity Bell state the CHSH expectation reaches the algebraic
+Tsirelson value $S=2\sqrt2=2.828427$. The value itself is fixed by the
+algebra; what the lattice establishes is that this algebra is realized
+by eight well-separated vortex-bound modes of a genuine microscopic
+Hamiltonian. This value survives fermion-parity
+superselection exactly, because the Bell state is a definite-parity
+eigenstate with unit weight in its own sector --- a statement specific
+to the present four-MZM, measurement-only construction, not to
+braid-then-fuse protocols, which are a different experiment. A
+commuting-only control
+setting returns $K=\sqrt2\le2$, and the finite-size Majorana footprint
+leaking across the bipartition decays monotonically with system size
+(isotropic scaling $17.0\%\to10.2\%\to2.3\%$). We stress the critical
+scope-limiting fact, following Brennen et al., sharpened into a precise no-go by Howard and
+Vala [Phys.\ Rev.\ A \textbf{85}, 022304 (2012)]: a \emph{physical} Bell-inequality violation
+using only topologically protected Ising-anyon operations does not
+follow from this construction, since Ising braiding generates only the
+Clifford group; that step requires a non-Clifford (``magic'') resource,
+the subject of a companion paper. What we report here is the local
+realization of the noncommuting Bell-operator \emph{algebra} on a
+genuine microscopic lattice substrate, not a claim of Bell nonlocality.
+A loop-threading relative phase $\delta$ reproduces the analytic
+corollary $S(\delta)=2\sqrt2\cos^2(\delta/2)$ to a residual of
+$4.4\times10^{-16}$ on a $28\times16$ lattice --- a consistency check on
+the algebra rather than
+an independent signature of loop threading ---, and an independent
+gauge-invariant flux-holonomy
+diagnostic confirms no adiabatic channel mixing at the quoted scale
+($\lVert[W,Z_A]\rVert_F=0.0132$ on a $24\times18$ lattice), with the
+sole open discrepancy being a
+$0.020$-rad gap between the accumulated Berry phase at one full flux
+quantum and the target $\pi$, traced to genuine near-degeneracies along
+the loop rather than to a construction error.
+\end{abstract}
+
+\keywords{Kitaev honeycomb model; Ising anyons; Majorana zero modes;
+CHSH inequality; Bell algebra; superselection; magic; nonstabilizerness}
+
+\maketitle
+
+%% ====================================================================
+\section{Introduction}
+\label{sec:intro}
+
+Non-Abelian anyons realize a Bell-type correlation structure without
+any need for spatially separated entangled particles in the usual
+sense: braiding or measuring topological charges of well-separated
+quasiparticles can generate the same noncommuting operator algebra
+that underlies the CHSH inequality~\cite{CHSH1969,Cirelson1980}, a
+point established in general terms by Brennen \emph{et
+al.}~\cite{Brennen2009} for a broad class of non-Abelian anyon models,
+including SU(2)$_2$ (Ising) anyons. Brennen \emph{et al.} show that a
+Bell-operator norm saturating the Tsirelson bound,
+$W=-2\sqrt2$, is reachable for Ising-anyon braiding transformations
+alone, and give an explicit argument that braiding generates only the
+Clifford group so that an additional non-stabilizer resource is required
+to convert this algebraic saturation into an actual Bell-inequality
+violation with topologically protected operations --- an argument later
+sharpened into a precise no-go by Howard and
+Vala~\cite{HowardVala2012}: Ising-anyon braiding transformations,
+being Clifford operations, cannot violate a Bell inequality when only
+topologically protected stabilizer operations are performed.
+
+This paper reports the microscopic instantiation of the Brennen
+construction on a concrete Hamiltonian, the Kitaev honeycomb
+model~\cite{Kitaev2003,Kitaev2006} in its gapped non-Abelian (Ising)
+phase, where vortices bind isolated Majorana zero modes (MZMs).
+Four spatially separated MZMs per party, obtained from four
+well-separated vortex cores, furnish a local logical qubit per party
+together with a second, noncommuting measurement setting realized as a
+static fusion-parity measurement --- not a braid --- on a different
+pair of Majorana modes. We verify numerically, on the honeycomb
+lattice itself, that (i) the resulting two-setting-per-party algebra
+realizes the CHSH operator norm at its algebraic (Tsirelson) maximum,
+(ii) this value survives fermion-parity superselection exactly, and
+(iii) the residual finite-size leakage of the construction across the
+party bipartition vanishes in the large-lattice limit. Section
+\ref{sec:setup} introduces the lattice substrate and the measurement
+algebra. Section~\ref{sec:m0} reports the four core numerical targets.
+Section~\ref{sec:rescope} states the re-scoped core claim in the form
+required by Howard--Vala and cross-references the companion resource
+paper on nonstabilizerness~\cite{Sayim2026magic}. Sections
+\ref{sec:m5} and \ref{sec:m5flux} report two corollary checks on a
+loop-threading sector phase $\delta$, one analytic and one a
+gauge-invariant flux-holonomy diagnostic. Section~\ref{sec:discussion}
+discusses prior art and scope.
+
+%% ====================================================================
+\section{Lattice substrate and measurement algebra}
+\label{sec:setup}
+
+\subsection{Kitaev honeycomb model and Ising vortices}
+
+The Kitaev honeycomb model~\cite{Kitaev2006} is an exactly solvable
+spin-$1/2$ model on the honeycomb lattice whose ground-state phase
+diagram contains a gapped, non-Abelian phase (the ``B phase'')
+supporting Ising anyons: an Abelian vacuum sector $1$, a fermionic
+excitation $\psi$, and a non-Abelian vortex $\sigma$ that binds an
+unpaired Majorana zero mode. We work on a finite honeycomb lattice
+deep in the B phase and place four well-separated vortex pairs, so
+that each party (Alice, Bob) is assigned four vortices carrying four
+Majorana operators $\gamma_{A,1},\ldots,\gamma_{A,4}$ and
+$\gamma_{B,1},\ldots,\gamma_{B,4}$ respectively, with Alice's and
+Bob's vortex clusters placed in disjoint, well-separated regions of
+the lattice. Reading out a fusion-channel parity of two such vortices
+is the standard non-Abelian interferometric measurement primitive
+established for anyon platforms~\cite{BondersonShtengelSlingerland2008}, with
+a time-domain interferometric readout of Ising-vortex fusion outcomes
+proposed as a concrete experimental technique for Kitaev
+spin-liquid candidate materials~\cite{Klocke2021}.
+
+The lattice realization is checked against two independent
+diagnostics before any Bell-type quantity is computed. First, a
+Bloch-transform cross-check against the exactly solvable momentum-space
+spectrum confirms the bulk excitation gap ($\Delta\approx0.75$--$0.80$
+in units of the nearest-neighbor coupling) at the real-space lattice
+size used. Second, the vortex-bound zero modes are tracked directly:
+the number of near-zero eigenmodes equals the number of vortex cores
+independent of the zero-mode threshold used to define ``near
+zero,'' the modes are exponentially localized on their host vortex
+($89\%$ of each mode's weight within a radius of six lattice
+sites), the residual inter-cluster leakage of this exponential tail is
+$2.6\%$, and the finite-size splitting between the modes nominally
+paired into one fermionic parity is $5.4\times10^{-2}$ in the same
+units. These four checks confirm that the construction below acts on
+genuine, well-separated Majorana zero modes bound to real vortex
+cores on the lattice, not on an idealized zero-splitting toy model. We
+emphasize, in the interest of honest scope, that this is not a
+from-scratch re-derivation of the Kitaev honeycomb solution itself
+--- we use the model's own exact solvability, cross-checked as above
+--- but a verified microscopic instantiation of the measurement
+algebra described next.
+
+\subsection{Local qubit and the second, noncommuting setting}
+\label{sec:algebra}
+
+Each party's four Majorana operators define two local fusion-parity
+observables,
+\begin{equation}
+\label{eq:ZAXA}
+Z_A = i\,\gamma_{A,1}\gamma_{A,2}, \qquad
+X_A = i\,\gamma_{A,2}\gamma_{A,3},
+\end{equation}
+and analogously $Z_B=i\gamma_{B,1}\gamma_{B,2}$,
+$X_B=i\gamma_{B,2}\gamma_{B,3}$ for Bob. Both $Z_A$ and $X_A$ are
+Hermitian, square to the identity, and have spectrum $\{+1,-1\}$: they
+are \emph{static} fusion-channel-parity measurements, of the
+measurement-only type discussed by Clarke, Sau, and Das
+Sarma~\cite{ClarkeSauDasSarma2016} and by
+Karzig~\emph{et~al.}~\cite{Karzig2017}, not braiding unitaries. This
+point is a guard against a natural misreading: $X_A$ is a static
+$\pm1$ observable ($\lVert X_A-X_A^\dagger\rVert_2=0$, spectrum exactly
+$\{+1,-1\}$), never equal to the braid unitary
+$\exp(\tfrac{\pi}{4}\gamma_{A,2}\gamma_{A,3})$ that would exchange the
+two vortex cores; no braiding and no fusion-channel $F$- or
+$R$-matrix ``oracle'' enters its definition or its measurement.
+
+Alice's total local fermion parity,
+$P_A=\gamma_{A,1}\gamma_{A,2}\gamma_{A,3}\gamma_{A,4}$, commutes with
+both $Z_A$ and $X_A$ exactly, so Alice's local qubit sits in a single,
+well-defined superselection sector: her measurement choice never mixes
+even and odd local parity. The analogous statement holds for Bob.
+
+The two settings within a party fail to commute,
+\begin{equation}
+\label{eq:P1}
+P_1 \equiv \lVert[Z_A,X_A]\rVert_2 = 2.000000,
+\end{equation}
+so a local, noncommuting second measurement setting genuinely exists;
+we return to this as an adversarial control in Sec.~\ref{sec:m0}.
+Across the bipartition, all four cross operators commute exactly,
+\begin{equation}
+\label{eq:P2}
+P_2 \equiv \max_{O\in\{Z_A,X_A\},\,O'\in\{Z_B,X_B\}} \lVert[O,O']\rVert_2 = 0,
+\end{equation}
+because $Z_A,X_A$ and $Z_B,X_B$ act on disjoint sets of Majorana
+operators by construction. Equations~\eqref{eq:P1}--\eqref{eq:P2} are
+consequences of the fermionic Clifford algebra of the eight Majorana
+operators alone and hold independent of any particular matrix
+representation, verified below by a representation-independent
+combinatorial cross-check.
+
+%% ====================================================================
+\section{The four locked targets}
+\label{sec:m0}
+
+We prepare the fusion-parity Bell state $\ket{\Psi}$ as the common
+$+1$ eigenstate of $Z_AZ_B$ and $X_AX_B$ on the sixteen-dimensional
+joint Majorana Fock space, and evaluate the CHSH functional
+\begin{equation}
+\label{eq:chsh}
+S = \langle Z_A B\rangle + \langle Z_A B'\rangle
+  + \langle X_A B\rangle - \langle X_A B'\rangle,
+\end{equation}
+with Bob's settings taken as the standard equal-weight combinations
+\begin{equation}
+\label{eq:settings}
+B=(Z_B+X_B)/\sqrt2, \qquad B'=(Z_B-X_B)/\sqrt2 .
+\end{equation}
+Table~\ref{tab:m0} lists
+the four pre-registered target quantities together with the ideal
+value each is checked against.
+
+\begin{table}[!h]
+\centering
+\caption{The four locked M0 targets, evaluated on the Kitaev-honeycomb
+lattice construction of Sec.~\ref{sec:setup}. All values reproduced
+independently from an unrelated, mirrored Jordan--Wigner ordering and
+by a representation-independent combinatorial set-overlap rule (see
+text); reproduction scripts deposited (Data and Code Availability).}
+\label{tab:m0}
+\begin{tabular}{lcc}
+\toprule
+Quantity & Value & Ideal \\
+\midrule
+$P_1=\lVert[Z_A,X_A]\rVert_2$        & $2.000000$ & $2$ \\
+$P_2$ (cross-party commutator)       & $0$ (exact) & $0$ \\
+$S$ (CHSH, ideal Bell state)         & $2.828427$ & $2\sqrt2$ \\
+$K$ (commuting-only control)         & $1.414214$ & $\sqrt2\le2$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The commuting-only control $K$ replaces the second setting by an
+operator built exclusively from the pair $\{\gamma_{A,1},\gamma_{A,2}\}$
+(i.e., omitting the third Majorana mode entirely), which by
+construction commutes with $Z_A$; the resulting CHSH expectation is
+capped at $K\le2$, the classical bound. This is the falsifiability
+check for the whole construction: without a genuine third, local
+Majorana mode furnishing a noncommuting second setting, the
+construction collapses to the same one-dimensional trap familiar from
+braiding-only constructions~\cite{Brennen2009}, and $S$ can never
+exceed $2$. That the full four-Majorana-per-party construction instead
+reaches $S=2.828427$ shows the noncommuting second setting is doing
+genuine work.
+
+Two further consistency checks accompany Table~\ref{tab:m0}. First,
+the operator norm of the full Bell operator itself saturates at
+$\lVert\text{CHSH-operator}\rVert_2=2.828427$, so $S$ cannot exceed
+the Tsirelson value on any state; the value in Table~\ref{tab:m0} is a
+genuine quantum maximum, not an artifact of state tuning. Second, the
+Bell state $\ket{\Psi}$ is maximally entangled across the Alice/Bob
+cut: its Schmidt coefficients are $(1/\sqrt2,1/\sqrt2,0,0)$ and its
+entanglement entropy is $1.000$ bit, the maximum for a two-qubit pair
+--- the CHSH value in Table~\ref{tab:m0} reflects genuine bipartite
+entanglement of the underlying fusion-parity qubits, not a
+classically-correlated artifact of the construction.
+
+All four targets, together with the representation-independence check
+and the adversarial controls above, were reproduced by an entirely
+independent implementation: a mirrored Jordan--Wigner string
+convention (opposite ordering of the eight Majorana operators), plus a
+representation-independent combinatorial rule for operator
+commutation --- for two products of Majorana operators indexed by
+finite sets $S,T$, $\prod_{i\in S}\gamma_i$ and $\prod_{j\in T}\gamma_j$
+commute if and only if $|S||T|-|S\cap T|$ is even --- checked against
+the explicit matrix representation on all sampled operator pairs, with
+full agreement. Because this rule depends only on set overlap and not
+on any specific representation, its agreement with the matrix
+computation rules out a representation-specific artifact.
+
+Finally, we quantify the residual finite-size leakage of the
+construction: at a fixed lattice size, the mean cross-party
+support weight of Alice's modes on Bob's region is $8.3\%$, with the
+Majorana-splitting/gap ratio at $7.3\%$; scanning isotropically over
+increasing lattice size (on $24\times12$, $32\times16$ and
+$44\times22$ lattices, with inter-cluster separations $d=18$, $24$
+and $33$), this support weight decreases monotonically as
+$17.0\%\to10.2\%\to2.3\%$. These are the two finite-size quantities
+that would lift the commutator $P_2$ away from zero at finite size; in
+the construction reported above $P_2$ is exactly zero, and both
+quantities vanish as $L\to\infty$. We report the point value and the finite-size series
+separately to avoid conflating a single lattice-size measurement with
+the scaling trend.
+
+%% ====================================================================
+\section{Re-scoped core claim}
+\label{sec:rescope}
+
+The numbers of Sec.~\ref{sec:m0} establish that the Kitaev honeycomb
+model, restricted to measurement-only operations on well-separated
+Ising vortices, realizes \emph{locally} the noncommuting CHSH
+Bell-operator \emph{algebra}: two noncommuting settings per party
+($P_1=2$), exact cross-party commutativity ($P_2=0$), and a CHSH
+expectation value on the corresponding maximally entangled fusion-parity
+state that reaches the algebraic Tsirelson value
+$S=2\sqrt2=2.828427$, surviving fermion-parity superselection exactly
+because the Bell state is a definite-parity eigenstate
+($\langle P_{\mathrm{tot}}\rangle=+1$) with unit weight in its own
+sector, so that the physical parity projection acts as the identity on
+it --- the same superselection-survival mechanism identified for
+Majorana-based nonlocal entanglement by Romito and
+Gefen~\cite{RomitoGefen2017}.
+
+The lattice modes enter the algebra already orthonormal: they are real
+Schur vectors of the real antisymmetric $\hat A$, so
+$G^\mathsf{T}G = I$ is an identity of the construction rather than a
+numerical finding, holding to the accuracy of the Schur decomposition
+($2.3\times10^{-14}$) before any orthonormalization step. The Tsirelson
+value is accordingly fixed by the algebra, as stated above; what the
+lattice supplies is that this algebra is realized by eight
+well-separated vortex-bound modes, with the finite quantities --- the
+Majorana-splitting/gap ratio and the mean cross-party support weight
+--- reported separately and entering no Bell value.
+
+What does \emph{not} follow from this, and is the central scope
+restriction of this paper, is a \emph{physical} Bell-inequality
+violation obtained using only topologically protected Ising-anyon
+operations. Howard and Vala~\cite{HowardVala2012} show that Ising-anyon
+braiding transformations generate only the Clifford group, and that
+Clifford operations alone --- however they realize the CHSH
+\emph{algebra} --- cannot produce a genuine Bell-inequality violation
+without an additional non-Clifford (``magic'') resource; this
+sharpens the earlier, more general Clifford-braiding argument of
+Brennen \emph{et al.}~\cite{Brennen2009} (Sec.~\ref{sec:discussion}).
+The construction of this paper uses only Clifford combinations of
+static fusion-parity observables on topologically protected Majorana
+zero modes: Alice measures the parities $Z_A$ and $X_A$ directly, while
+the CHSH settings on Bob's side are the $45^\circ$-rotated combinations
+$B,B'$ of Eq.~\eqref{eq:settings}. No non-Clifford gate is introduced
+anywhere in Secs.~\ref{sec:setup}--\ref{sec:m0}, and the rotations are
+Clifford; the Howard--Vala condition additionally requires the
+measurements to be stabilizer operations --- so it is precisely a
+realization of
+the Bell \emph{algebra} and not of a Bell \emph{violation} in the
+physical, topologically-protected sense. We treat $B,B'$ at the level
+of the ideal logical Majorana algebra; their realization as individual
+topologically protected measurements is not constructed here. The
+parity observables are bilinears in the matter Majoranas at spatially
+separated vortex cores and are therefore not by themselves invariant
+under the $\mathbb{Z}_2$ gauge generators
+$D_i = b^x_i b^y_i b^z_i c_i$; the gauge-invariant observable carries a
+Wilson line of the link variables between the two
+cores~\cite{Petrova2014}. Within a fixed flux sector --- the setting
+used throughout --- that Wilson line is a number $\pm1$ fixed by the
+enclosed flux, so the dressed and undressed operators act identically
+and every value reported here is unchanged. Whether and how a
+non-stabilizer resource can be added on top of the present construction
+to convert the algebraic saturation of Table~\ref{tab:m0} into an
+actual physical violation is the subject of a companion paper
+establishing where standard correlation witnesses are, and are not,
+sensitive to nonstabilizerness (``magic'') in the related family of
+$\mathrm{SU}(2)_k$ anyon models~\cite{Sayim2026magic}; we cross-reference
+that paper's results bidirectionally and make no independent claim
+about magic resources here.
+
+%% ====================================================================
+\section{Loop-threading sector phase: analytic corollary}
+\label{sec:m5}
+
+As a corollary check that the construction of Sec.~\ref{sec:setup}
+behaves as expected under a controlled physical deformation, we
+introduce a loop-threading relative phase $\delta$ on the maximally
+entangled fusion-parity Bell state,
+$\ket{\Psi(\delta)}=(\ket{00}+e^{i\delta}\ket{11})/\sqrt2$ in the
+$\{Z_A,Z_B\}$ eigenbasis, and evaluate the CHSH expectation at Alice's
+settings held fixed at their $\delta=0$-optimal values. The resulting
+curve is the analytic corollary of the Bell-state algebra of
+Sec.~\ref{sec:m0},
+\begin{equation}
+\label{eq:Sdelta}
+S(\delta) = 2\sqrt2\,\cos^2(\delta/2),
+\end{equation}
+which we verify at eight pre-registered values of $\delta$ between $0$
+and $\pi$, finding a maximum residual
+$\max_\delta\lvert S(\delta)-2\sqrt2\cos^2(\delta/2)\rvert=4.4\times10^{-16}$
+against a pre-registered tolerance of $8.9\times10^{-16}$, and confirm
+by direct fine scan that $S(\delta)$ decreases monotonically over
+$\delta\in[0,\pi]$ and never exceeds $2\sqrt2$. The nonlocality
+threshold, where $S(\delta)$ crosses the classical bound $S=2$, is at
+\begin{equation}
+\delta^\star = 2\arccos\bigl(2^{-1/4}\bigr) = 1.143718\ \mathrm{rad} = 65.53^\circ.
+\end{equation}
+
+We flag explicitly, following the self-testing literature on
+local-unitary invariance of the Tsirelson
+value~\cite{SupicBowles2020}, that Eq.~\eqref{eq:Sdelta} by itself is
+\emph{not} an independent microscopic signature of loop threading: by
+a Heisenberg-picture equivalence, the same curve is produced by a
+purely kinematic detector-misalignment scan of a fixed Bell state
+against a rotated measurement axis, with zero residual difference from
+Eq.~\eqref{eq:Sdelta} to numerical precision. What is genuinely ownable
+about the sector-phase construction is the underlying algebra of
+Sec.~\ref{sec:setup} together with the two topologically protected
+($\mathbb{Z}_2$-native) endpoints $\delta=0$ (Tsirelson saturation) and
+$\delta=\pi$ (classical baseline $S=0$); we treat $S(\delta)$ itself as
+a corollary consistency check on the algebra, not as a free-standing
+result.
+
+%% ====================================================================
+\section{Continuous-flux holonomy: an honest partial}
+\label{sec:m5flux}
+
+A stronger, and physically distinct, question is whether the phase
+$\delta$ can be generated \emph{dynamically}, by adiabatically
+threading a physical flux quantum through a loop enclosing one of
+Alice's vortex pairs, rather than imposed by hand on the reference
+state. We evaluate this using a gauge-invariant diagnostic: the
+discrete non-Abelian Wilson-loop holonomy $W$ obtained by parallel
+transport of the near-zero-mode subspace around a closed flux loop
+$\Phi:0\to2\pi$, together with the basis-covariant localization
+operator $Z_A$ constructed from the enclosed-vortex projector at
+$\Phi=0$. Both $W$ and $\lVert[W,Z_A]\rVert_F$ are, by construction,
+invariant under any change of basis of the near-zero-mode subspace
+(the non-Abelian Wilczek--Zee gauge freedom of the degenerate
+subspace~\cite{WilczekZee1984}, not the $\mathbb{Z}_2$ gauge
+redundancy generated by the $D_i$); we
+have verified this numerically to machine precision
+($\Delta$(eigenphases)$\,{=}\,7.6\times10^{-16}$ under an explicit
+random basis rotation) and across three random-number seeds
+(spread $2.0\times10^{-15}$), and confirmed lattice convergence between
+grid resolutions $M=64$ and $M=128$ (relative change $\sim0.3\%$).
+
+Three of five pre-registered criteria for this diagnostic pass
+outright: the holonomy $W$ is near-trivial, with eigenphases bounded
+by $6.2\times10^{-3}$ over the full loop; the commutator
+$\lVert[W,Z_A]\rVert_F=0.0132$ shows no channel mixing between the
+localized near-zero modes; and the Berry/Wilson integral is computed
+directly from the loop, not fitted to any target curve. The fourth
+criterion is an honest labeling requirement (that the continuous-flux
+construction is presented as an effective description, not claimed to
+be natively realized on the exactly solvable model) and is satisfied
+by construction.
+
+The fifth criterion, and the sole open discrepancy, is that the
+accumulated single-mode Berry phase at one full flux quantum does not
+close exactly on the target value $\pi$:
+$\delta_{\mathrm{full}}\bmod2\pi=3.1212$ against the target
+$\pi=3.1416$, a gap of $0.020$~rad. We traced this discrepancy to its
+source rather than treating it as an unresolved anomaly: tracking the
+four near-zero eigenvalues along the flux loop reveals genuine,
+near-exact level degeneracies at two points on the loop (minimum gaps
+of $2.2\times10^{-18}$ and $8.7\times10^{-19}$, at the floating-point
+floor), at which single-mode adiabatic following is not well defined.
+The maximum-overlap tracking used to extract a single-mode phase
+necessarily follows a \emph{diabatic} branch through such a crossing,
+which can accumulate an extra phase inconsistent with the adiabatic
+value, while the four-dimensional subspace holonomy $W$ --- immune to
+internal relabeling at a crossing within the tracked subspace ---
+remains near-trivial throughout. The two facts, single-mode
+$\delta\approx\pi$-with-a-gap and subspace $W\approx\mathbb{1}$, are
+consistent answers to two different questions, not a contradiction.
+
+We therefore report this diagnostic as an honest \textbf{partial}: the
+gauge-invariant, basis-independent quantities
+($W$, $\lVert[W,Z_A]\rVert_F=0.0132$) show no adiabatic channel
+mixing, and the continuous-$\delta$ construction remains valid as an
+\emph{effective} description of the Ising topological quantum field
+theory monodromy; but the single-mode Berry-phase closure at the full
+flux quantum is not established to the pre-registered tolerance, and
+we do not claim it. What survives unconditionally from this section is
+the pair of $\mathbb{Z}_2$-native endpoints $\delta=0,\pi$ and the
+parity-selective fusion-qubit algebra of Sec.~\ref{sec:setup}, both
+already established without reference to the continuous flux
+construction. We note, for the record, that an earlier per-mode
+diagnostic of this same construction used an unseeded eigensolver
+pipeline and reported a basis-dependent commutator norm that varied
+by an order of magnitude across repeated runs (range
+$0.18$--$3.3$); that diagnostic was not gauge-invariant and has been
+superseded by the seed-stable, basis-independent construction
+reported in this section. Only the values given above --- $W$,
+$\lVert[W,Z_A]\rVert_F=0.0132$, and the criteria of this section ---
+are cited anywhere in this paper.
+
+%% ====================================================================
+\section{Discussion}
+\label{sec:discussion}
+
+\paragraph{Relation to Brennen \emph{et al.}} Brennen, Iblisdir,
+Pachos, and Slingerland~\cite{Brennen2009} give the general argument,
+for a broad class of non-Abelian anyon models including SU(2)$_2$
+(Ising anyons), that a Bell-operator norm can saturate the Tsirelson
+bound ($W=-2\sqrt2$ for the Ising case) using topologically protected
+braiding transformations alone, and observe explicitly that these
+transformations generate only the Clifford group, so an additional
+non-Clifford gate is required to turn this algebraic saturation into
+an actual Bell violation --- three years before the sharper Howard--Vala
+no-go~\cite{HowardVala2012}. Ising anyons are topologically classical
+in exactly this sense: the algebraic saturation of the Tsirelson bound
+is available from braiding alone, but converting it into a genuine
+violation is not, precisely because braiding alone cannot supply the
+required non-Clifford resource. We make no priority claim on
+Ising-anyon CHSH saturation, on the value $2\sqrt2$ itself, or on the
+Clifford-braiding-cannot argument: all three are established by
+Brennen \emph{et al.} and sharpened by Howard and Vala. What this paper
+contributes beyond that prior art is the explicit microscopic
+instantiation of the algebra on the Kitaev honeycomb Hamiltonian
+itself (Sec.~\ref{sec:setup}), the sector-phase axis $\delta$ and its
+loop-threading corollaries (Secs.~\ref{sec:m5}--\ref{sec:m5flux}), and
+the explicit verification that superselection does not reduce $S$
+(Sec.~\ref{sec:m0}) --- none of which appear in Brennen \emph{et al.},
+whose continuous family is parametrized by a state amplitude rather
+than by a sector/loop-threading phase. A recent hardware demonstration
+realizes universal gates on the smallest non-Abelian quantum double
+($S_3$, 54 trapped-ion qubits) precisely by promoting anyon
+\emph{fusion} to an active computational primitive --- braiding alone
+remains nonuniversal there --- an experimental instance of the same
+resource dichotomy that scopes our witness statement~\cite{Lo2026}.
+
+\paragraph{Relation to Michalski \emph{et al.}} Michalski, Konderak,
+Bruzda, and Augusiak~\cite{Michalski2025} construct a
+device-independent self-testing equivalence for an abstract class of
+Jordan--Wigner Clifford generators motivated by Majorana-fermion
+certification, at the level of the abstract operator algebra, with no
+microscopic lattice, honeycomb, or vortex construction. Their result
+and the present one are complementary rather than competing: theirs is
+platform-independent self-testing of an abstract generator algebra,
+ours is a microscopic, sector-resolved lattice realization of a
+closely related algebra on a specific Hamiltonian.
+
+\paragraph{Relation to Hu, Deng, and Chen.} Hu, Deng, and
+Chen~\cite{HuDengChen2009} propose an all-versus-nothing (Hardy-type)
+violation of local realism on the same Kitaev honeycomb lattice,
+using the Abelian toric-code (Z$_2$ gauge theory) sector of the model.
+Their construction and ours share a Hamiltonian family but occupy
+different phases and different correlation structures: theirs is an
+Abelian all-versus-nothing/GHZ-type violation in the toric-code
+sector; ours is a non-Abelian CHSH \emph{algebra}, not a violation, in
+the Ising (non-Abelian) sector. We do not claim any all-versus-nothing
+result, and their construction does not bear on the non-Clifford
+requirement that is the central scope restriction of Sec.~\ref{sec:rescope}.
+
+\paragraph{Relation to Takahashi \emph{et al.}} Takahashi, Yamada,
+Udagawa, Mizushima, and Fujimoto~\cite{Takahashi2022} study the same
+platform --- Ising vortices trapped at lattice vacancies of the
+Kitaev honeycomb spin liquid --- and propose a nonlocal spin (and
+associated conductance) correlation as an experimental signature of
+the trapped anyons. Their construction and ours share the underlying
+lattice and the non-Abelian vortex substrate, but not the observable:
+theirs is a nonlocal spin-correlation signature aimed at
+distinguishing genuine Ising-anyon physics from trivial local
+artifacts, with no CHSH functional, Bell operator, or measurement
+algebra constructed; ours is the Bell-operator algebra of
+Sec.~\ref{sec:setup} evaluated on fusion-parity observables. We flag
+the overlap in platform explicitly so the two are not conflated.
+
+\paragraph{Why Ising and not Fibonacci.} A natural question is whether
+the sector-phase construction of Sec.~\ref{sec:m5} generalizes to
+Fibonacci anyons, whose braiding is dense in $\mathrm{SU}(2)$ and
+therefore does supply a non-Clifford resource by braiding alone. We
+record a negative finding here, qualitatively: the naive analog of the
+sector-phase deformation, obtained by replacing a Fibonacci braid
+generator $R_\tau$ by $R_\tau\,e^{i\delta}$, breaks the Yang--Baxter
+consistency of the braid representation, so it does not correspond to
+any physically consistent Fibonacci braiding transformation; we are
+not aware of a physically consistent Fibonacci-sector analog of
+Eq.~\eqref{eq:Sdelta}. This is a documented negative observation, not
+a numerical result, and we do not pursue it further here.
+
+\paragraph{Scope.} This paper establishes a local realization of the
+CHSH Bell-operator algebra on a microscopic, spatially separated
+Majorana construction, together with a controlled sector-phase
+corollary and an honestly partial continuous-flux diagnostic. It does
+not establish a physical Bell-inequality violation using only
+topologically protected operations (Sec.~\ref{sec:rescope}); it makes
+no claim about the non-stabilizer resource required for such a
+violation, which is addressed for a related anyon family in a
+companion paper~\cite{Sayim2026magic}; and the Majorana zero modes used
+here are a theoretical construction on an idealized lattice
+Hamiltonian, with no claim made about, or connection asserted to, any
+specific solid-state or hybrid platform experiment.
+
+%% ====================================================================
+\section*{Data and Code Availability}
+The reproduction scripts and raw JSON outputs supporting the values
+reported in this paper are deposited at
+\href{https://doi.org/10.5281/zenodo.21134322}{doi:10.5281/zenodo.21134322}.
+Paper, figures, and data are released under the Creative Commons
+Attribution 4.0 International (CC~BY~4.0) license; the deposited source
+code is released under the Apache License, Version 2.0
+(see \texttt{LICENSE} and \texttt{LICENSE-CODE}).
+The deposit contains the four locked targets of Table~\ref{tab:m0}, the
+sector-phase curve, the flux-holonomy diagnostic and the finite-size
+scan, together with the scripts that reproduce them on the
+Kitaev-honeycomb lattice construction of Sec.~\ref{sec:setup}.
+
+\section*{Use of AI tools}
+
+In the research, processing, and writing of this paper and its results I worked together with generative AI tools, in practice a system of multiple coordinated AI instances that I set up and orchestrate (large language models, mainly Claude, by Anthropic, inside Claude Code). At their current context sizes I found it far more effective to work with several specialized instances, each with its own role and its own harness of rules and parameters that I designed and refined through feedback, than to load a single instance with all of the material; for my workflow that would have been inefficient, though this depends on the individual implementation. I lead this collaboration: I choose the research directions, set the goals, and make the final decisions in open exchange with the AI, learning actively as the work proceeds. The AI carries out the drafting, including the mathematical and technical parts, the numerical computation, and the literature search, under my direction. The AI works autonomously only task by task, within the structure I develop through feedback: it completes a task, and at open questions that need me it stops until the point is settled before the next step. Along the way I witness and take many of the decisions that shape the path, and it is common for me to spot things that need improvement. The work spans many separate runs, and a single simulation or build task alone can take up to an hour, so it could not happen all together in one autonomous run; and had I let the AI do all of it together alone, even if it is possible, it would no longer be my work but the AI's.
+
+I run multiple verifications at the different stages of the work and one before release, including cross-checks with an unrelated AI model from a different company, and all references are checked against the original sources. In the end what matters are human eyes, a principle that is itself written into the parameters of my system: I reach out to experts after publishing for review and feedback, so I learn what is solid and what must be corrected or falsified. My scripts for reproduction and review are released with this record. These tools are not authors; I am the author, and I take full responsibility for all scientific content and decisions leading to these results and their publication.
+
+\section*{Acknowledgments}
+No external funding was received. The author declares no competing
+interests.
+
+%% ====================================================================
+\begin{thebibliography}{99}
+
+\bibitem{CHSH1969}
+J.~F.~Clauser, M.~A.~Horne, A.~Shimony, and R.~A.~Holt,
+\emph{Proposed experiment to test local hidden-variable theories},
+Phys.\ Rev.\ Lett.\ \textbf{23}, 880 (1969).
+
+\bibitem{Cirelson1980}
+B.~S.~Cirel'son,
+\emph{Quantum generalizations of Bell's inequality},
+Lett.\ Math.\ Phys.\ \textbf{4}, 93 (1980).
+
+\bibitem{Brennen2009}
+G.~K.~Brennen, S.~Iblisdir, J.~K.~Pachos, and J.~K.~Slingerland,
+\emph{Non-locality of non-Abelian anyons},
+New J.\ Phys.\ \textbf{11}, 103023 (2009);
+\href{https://arxiv.org/abs/0810.4319}{arXiv:0810.4319}.
+
+\bibitem{HowardVala2012}
+M.~Howard and J.~Vala,
+\emph{Nonlocality as a benchmark for universal quantum computation in
+Ising anyon topological quantum computers},
+Phys.\ Rev.\ A \textbf{85}, 022304 (2012);
+\href{https://arxiv.org/abs/1112.1516}{arXiv:1112.1516}.
+
+\bibitem{Kitaev2003}
+A.~Kitaev,
+\emph{Fault-tolerant quantum computation by anyons},
+Ann.\ Phys.\ \textbf{303}, 2 (2003);
+\href{https://arxiv.org/abs/quant-ph/9707021}{arXiv:quant-ph/9707021}.
+
+\bibitem{Kitaev2006}
+A.~Kitaev,
+\emph{Anyons in an exactly solved model and beyond},
+Ann.\ Phys.\ \textbf{321}, 2 (2006);
+\href{https://arxiv.org/abs/cond-mat/0506438}{arXiv:cond-mat/0506438}.
+
+\bibitem{ClarkeSauDasSarma2016}
+D.~J.~Clarke, J.~D.~Sau, and S.~Das~Sarma,
+\emph{A practical phase gate for producing Bell violations in Majorana wires},
+Phys.\ Rev.\ X \textbf{6}, 021005 (2016);
+\href{https://arxiv.org/abs/1510.00007}{arXiv:1510.00007}.
+
+\bibitem{Karzig2017}
+T.~Karzig, C.~Knapp, R.~M.~Lutchyn, P.~Bonderson, M.~B.~Hastings,
+C.~Nayak, J.~Alicea, K.~Flensberg, S.~Plugge, Y.~Oreg, \emph{et al.},
+\emph{Scalable designs for quasiparticle-poisoning-protected
+topological quantum computation with Majorana zero modes},
+Phys.\ Rev.\ B \textbf{95}, 235305 (2017);
+\href{https://arxiv.org/abs/1610.05289}{arXiv:1610.05289}.
+
+\bibitem{RomitoGefen2017}
+A.~Romito and Y.~Gefen,
+\emph{Ubiquitous nonlocal entanglement with Majorana bound states},
+Phys.\ Rev.\ Lett.\ \textbf{119}, 157702 (2017);
+\href{https://arxiv.org/abs/1703.01841}{arXiv:1703.01841}.
+
+\bibitem{Petrova2014}
+O.~Petrova, P.~Mellado, and O.~Tchernyshyov,
+\emph{Unpaired Majorana modes on dislocations and string defects in
+Kitaev's honeycomb model},
+Phys.\ Rev.\ B \textbf{90}, 134404 (2014);
+\href{https://arxiv.org/abs/1406.6407v2}{arXiv:1406.6407v2}.
+
+\bibitem{SupicBowles2020}
+I.~\v{S}upi\'c and J.~Bowles,
+\emph{Self-testing of quantum systems: a review},
+Quantum \textbf{4}, 337 (2020);
+\href{https://arxiv.org/abs/1904.10042}{arXiv:1904.10042}.
+
+\bibitem{WilczekZee1984}
+F.~Wilczek and A.~Zee,
+\emph{Appearance of gauge structure in simple dynamical systems},
+Phys.\ Rev.\ Lett.\ \textbf{52}, 2111 (1984).
+
+\bibitem{BondersonShtengelSlingerland2008}
+P.~Bonderson, K.~Shtengel, and J.~K.~Slingerland,
+\emph{Interferometry of non-Abelian anyons},
+Ann.\ Phys.\ \textbf{323}, 2709 (2008);
+\href{https://arxiv.org/abs/0707.4206}{arXiv:0707.4206}.
+
+\bibitem{Klocke2021}
+K.~Klocke, D.~Aasen, R.~S.~K.~Mong, E.~Demler, and J.~Alicea,
+\emph{Time-domain anyon interferometry in Kitaev honeycomb spin
+liquids and beyond},
+Phys.\ Rev.\ Lett.\ \textbf{126}, 177204 (2021);
+\href{https://arxiv.org/abs/2011.00015}{arXiv:2011.00015}.
+
+\bibitem{Takahashi2022}
+M.~O.~Takahashi, M.~G.~Yamada, M.~Udagawa, T.~Mizushima, and S.~Fujimoto,
+\emph{Nonlocal spin correlation as a signature of Ising anyons
+trapped in vacancies of the Kitaev spin liquid},
+Phys.\ Rev.\ Lett.\ \textbf{131}, 236701 (2023);
+\href{https://arxiv.org/abs/2211.13884}{arXiv:2211.13884}.
+
+\bibitem{Michalski2025}
+P.~Michalski, A.~Konderak, W.~Bruzda, and R.~Augusiak,
+\emph{Certifying Majorana fermions with elegant-like Bell inequalities
+and a new self-testing equivalence},
+\href{https://arxiv.org/abs/2511.17764}{arXiv:2511.17764}.
+
+\bibitem{HuDengChen2009}
+M.-G.~Hu, D.-L.~Deng, and J.-L.~Chen,
+\emph{Proposed all-versus-nothing violation of local realism in the
+Kitaev spin-lattice model},
+Phys.\ Rev.\ A \textbf{79}, 010301(R) (2009);
+\href{https://arxiv.org/abs/0810.1157}{arXiv:0810.1157}.
+
+\bibitem{Sayim2026magic}
+B.~Y.~Sayim,
+\emph{Correlation witnesses versus magic: A $k$-resolved
+nonstabilizerness map for $\mathrm{SU}(2)_k$ anyon fusion spaces},
+Zenodo preprint (2026);
+\href{https://doi.org/10.5281/zenodo.21134454}{doi:10.5281/zenodo.21134454}.
+
+\bibitem{Lo2026}
+C.~F.~B. Lo, A.~Lyons, D.~Gresh, M.~Mills, P.~E. Siegfried, M.~D. Urmey,
+N.~Tantivasadakarn, H.~Dreyer, A.~Vishwanath, R.~Verresen, and M.~Iqbal,
+\emph{Universal gates from braiding and fusing anyons on quantum hardware},
+Nature \textbf{655}, 591 (2026);
+\href{https://arxiv.org/abs/2601.20956}{arXiv:2601.20956}.
+
+\end{thebibliography}
+
+\end{document}

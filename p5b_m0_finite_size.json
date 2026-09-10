@@ -1,0 +1,41 @@
+{
+  "milestone": "M0-NUMERIC isotropic finite-size scan (re-anchor of the leakage series)",
+  "provenance": {
+    "script": "p5b_m0_numeric.py",
+    "dependency": "p5b_m3b_kitaev_realspace.py (deposited)",
+    "deterministic": "no RNG in this file; lattice seed fixed in the dependency",
+    "note": "generator deposited so the leakage series quoted in Sec. III is reproducible end-to-end from this record; values unchanged from the published version"
+  },
+  "main_lattice": {
+    "L1": 28,
+    "L2": 16,
+    "sites": 896,
+    "kappa": 0.25,
+    "separation_d": 24.0,
+    "footprint_leakage_percent": 8.312,
+    "mzm_split_over_gap_percent": 7.337,
+    "alice_left_weight_percent": 91.688,
+    "bob_right_weight_percent": 96.226
+  },
+  "isotropic_scan": [
+    {
+      "L1": 24,
+      "L2": 12,
+      "separation_d": 18.0,
+      "leakage_percent": 17.01
+    },
+    {
+      "L1": 32,
+      "L2": 16,
+      "separation_d": 24.0,
+      "leakage_percent": 10.176
+    },
+    {
+      "L1": 44,
+      "L2": 22,
+      "separation_d": 33.0,
+      "leakage_percent": 2.301
+    }
+  ],
+  "monotonic_decrease": true
+}

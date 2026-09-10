@@ -2,7 +2,7 @@
 
 **Author:** Berkay Yüksel Sayim
 **ORCID:** [0009-0004-4993-7352](https://orcid.org/0009-0004-4993-7352)
-**DOI (this version):** [10.5281/zenodo.21134323](https://doi.org/10.5281/zenodo.21134323)
+**DOI (all versions):** [10.5281/zenodo.21134322](https://doi.org/10.5281/zenodo.21134322)
 
 ## Abstract
 
@@ -31,7 +31,7 @@ loop rather than to a construction error.
 
 ## Contents
 
-This record is compiled from `main_v1.0.tex` (RevTeX 4-2).
+This record is compiled from `main_v1.1.tex` (RevTeX 4-2).
 
 **Reproduction code and deposited data:**
 
@@ -59,10 +59,15 @@ This record is compiled from `main_v1.0.tex` (RevTeX 4-2).
   (‖[W,Z_A]‖_F = 0.0132), with the single open discrepancy (criterion c3,
   δ_full mod 2π = 3.1212 vs. target π) traced to genuine near-degeneracies
   along the flux loop.
+- `p5b_m0_numeric.py` + `p5b_m0_finite_size.json` — the M0 make-or-break test on
+  the microscopic lattice: whether the Kitaev honeycomb grants Alice two
+  non-commuting measurement settings locally on her own vortex region, together
+  with the isotropic finite-size scan that re-anchors the leakage series and its
+  monotonic-decrease check.
 
 All scripts require NumPy (and SciPy for `p5b_cbell_m5_lattice_sweep.py`) and are
 deterministic.
 
 ## License
 - Paper, figures, and data: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) — see `LICENSE`
-- Source code (`*.py`): [MIT License](https://opensource.org/licenses/MIT) — see `LICENSE-CODE`
+- Source code (`*.py`): [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) — see `LICENSE-CODE`

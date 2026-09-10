@@ -36,6 +36,13 @@ rigorous lattice facts and which are effective-theory interpolation:
 
 Reproducible: deterministic (m3b lattice, seed 0; real Schur form).  Imports verified m3b primitives.
 """
+# Console guard: printed output contains non-ASCII (U+2014). That character is cp1252-encodable,
+# so this is precaution against a future edit, not a fix for an observed failure.
+import sys
+
+if __name__ == "__main__" and hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+
 import numpy as np
 from scipy.linalg import schur
 from p5b_m3b_kitaev_realspace import build_lattice, vortex_pair_string, flux_field
