@@ -4,6 +4,8 @@
 **ORCID:** [0009-0004-4993-7352](https://orcid.org/0009-0004-4993-7352)
 **DOI (all versions):** [10.5281/zenodo.21134322](https://doi.org/10.5281/zenodo.21134322)
 
+> **Important — licensing:** paper, figures and data under CC BY 4.0; source code under the Apache License, Version 2.0. Version 1.0 (source code under MIT) has been withdrawn. Please read [IMPORTANT.md](IMPORTANT.md).
+
 ## Abstract
 
 We construct four spatially separated Majorana zero modes per party on a
@@ -70,4 +72,5 @@ deterministic.
 
 ## License
 - Paper, figures, and data: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) — see `LICENSE`
-- Source code (`*.py`): [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) — see `LICENSE-CODE`
+- Source code (`*.py`): [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0) — see `LICENSE-CODE`, `NOTICE` and `IMPORTANT.md`
+- Version 1.0 was released under earlier licence terms (source code under the MIT License) and has been withdrawn; versions 1.1 and later use the licences above.
