@@ -1,3 +1,4 @@
+[README.md](https://github.com/user-attachments/files/33892967/README.md)
 # Bell Algebra without Bell Violation: CHSH Operators for Ising Anyons in the Kitaev Honeycomb Model
 
 **Author:** Berkay Yüksel Sayim
@@ -5,6 +6,8 @@
 **DOI (all versions):** [10.5281/zenodo.21134322](https://doi.org/10.5281/zenodo.21134322)
 
 > **Important — licensing:** paper, figures and data under CC BY 4.0; source code under the Apache License, Version 2.0. Version 1.0 (source code under MIT) has been withdrawn. Please read [IMPORTANT.md](IMPORTANT.md).
+
+> **Correction notice (2026-10-23, also on the Zenodo record).** The abstract below states that the sole open discrepancy is a 0.020-rad gap between the Berry phase accumulated at one full flux quantum and the target π, “traced to genuine near-degeneracies along the loop rather than to a construction error”. This explanation is not correct. The single-mode phase summed along the loop, δ_full mod 2π = 3.1212, is not gauge invariant: the loop is closed on an eigenvector recomputed at Φ = 2π, whose phase the eigensolver fixes independently, so the quoted value is the gauge-invariant parallel-transport phase plus a closing phase that depends on the eigensolver’s start vector (here π). The gauge-invariant parallel-transport phases of the near-zero modes are −0.0204 and +0.0197 rad, all within 0.021 rad of zero; none is near π. The pre-registered single-mode closure criterion is therefore not met, and in this simulation the flux insertion does not generate δ dynamically. The “near-degeneracies” are particle–hole partner energies, equal by symmetry. The Bell-operator algebra, the gauge-invariant holonomy result and all other reported values are not affected. The paper text will be corrected in the next version.
 
 ## Abstract
 
