@@ -1,4 +1,3 @@
-[README.md](https://github.com/user-attachments/files/33892967/README.md)
 # Bell Algebra without Bell Violation: CHSH Operators for Ising Anyons in the Kitaev Honeycomb Model
 
 **Author:** Berkay Yüksel Sayim
